@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Your Highness ✨🐾</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0d0b18;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Magical Floating Particles */
+        .particle {
+            position: absolute;
+            bottom: -20px;
+            font-size: 1.2rem;
+            animation: floatUp 8s linear infinite;
+            opacity: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(0,0,0,0) 70%);
+            top: 5%;
+            left: 5%;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glow2 {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, rgba(0,0,0,0) 70%);
+            bottom: 5%;
+            right: 5%;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 440px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(240, 171, 252, 0.2);
+            border-radius: 28px;
+            padding: 35px 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(240, 171, 252, 0.15);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cute-cat {
+            font-size: 50px;
+            margin-bottom: 5px;
+            display: inline-block;
+            animation: bounceCat 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes bounceCat {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-10px) scale(1.05); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            color: #fdf4ff;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 0.88rem;
+            color: #f0abfc;
+            margin-bottom: 22px;
+            font-weight: 400;
+        }
+
+        .page {
+            display: none;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.9) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .msg {
+            background: rgba(15, 12, 32, 0.6);
+            border: 1px solid rgba(240, 171, 252, 0.25);
+            border-radius: 18px;
+            padding: 20px 18px;
+            text-align: left;
+            line-height: 1.75;
+            font-size: 0.95rem;
+            color: #e9d5ff;
+            margin-bottom: 24px;
+            box-shadow: inset 0 0 10px rgba(240, 171, 252, 0.05);
+        }
+
+        .question {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #fdf4ff;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(240, 171, 252, 0.3);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-width: 110px;
+        }
+
+        .btn:hover {
+            background: #e879f9;
+            color: #0d0b18;
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(232, 121, 249, 0.6);
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .btn-yes {
+            background: rgba(232, 121, 249, 0.2);
+            border-color: rgba(232, 121, 249, 0.5);
+        }
+
+        .btn-no {
+            transition: all 0.3s ease;
+        }
+
+        .hint {
+            font-size: 0.75rem;
+            color: #c084fc;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #f0abfc, #d946ef);
+            color: #0d0b18;
+            font-weight: 600;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            margin-top: 6px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(217, 70, 239, 0.3);
+        }
+
+        .next-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(217, 70, 239, 0.5);
+        }
+
+        .warning {
+            font-size: 0.8rem;
+            color: #fdf4ff;
+            background: rgba(217, 70, 239, 0.15);
+            border: 1px dashed rgba(217, 70, 239, 0.4);
+            padding: 10px 14px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        footer {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<div id="particles-container"></div>
+
+<div class="container">
+    <div class="cute-cat">🐱👑</div>
+
+    <!-- ================= PAGE 1 : OPENING ================= -->
+    <div class="page active" id="page1">
+        <h1>Happy Choti Diwali</h1>
+        <div class="subtitle">only for Your Highness ✨🐾</div>
+
+        <div class="msg">
+            your highness... happy choti diwali 🪔✨<br><br>
+            aap hamesha khush rha kro, smile krte hue bhot bhot ache lgte ho. mari yhi wish ha ki sadness aapke paas kabhi na aaye.<br><br>
+            may god replace all my happy days with your sad days... aapki life me sirf cuteness aur happiness honi chahiye. aaj ka din bhot ache se enjoy krna! 💖
+        </div>
+
+        <button class="next-btn" onclick="goTo('page2')">Next Meow →</button>
+    </div>
+
+    <!-- ================= PAGE 2 : GOOD BOY ================= -->
+    <div class="page" id="page2">
+        <div class="question">Am I a good boy? 🥺🐾</div>
+
+        <div class="btn-row">
+            <button class="btn btn-yes" id="yesBtn1" onclick="answerGoodBoy(true)">Yes</button>
+            <button class="btn btn-no" id="noBtn" onclick="answerGoodBoy(false)">No</button>
+        </div>
+        <div class="hint" id="noHint">(no pr nhi tap kr paoge... fir se soch lo 😼)</div>
+    </div>
+
+    <!-- ================= PAGE 3 : ZYADA BOLTA HU KYA ================= -->
+    <div class="page" id="page3">
+        <div class="msg" style="text-align:center; margin-bottom:18px;">
+            meko kbhi kbhi feel hota ha ki ma aapse zyada bol jata hu... jese aapko pasand nhi jab ma aapki tarif krta hu. ab meko realise ho rha ha ki ma thoda zyada bolne lga hu.<br><br>
+            plz btao na, maine abhi tak aapse zyada bola kya? 😿
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-yes" onclick="answerTalk(true)">Yes</button>
+            <button class="btn" onclick="answerTalk(false)">No</button>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 3 YES ================= -->
+    <div class="page" id="page3yes">
+        <div class="msg">
+            meko meri galti realise ho gayi ha... ma aage se dhyan rakhuga aur aise zyada nahi bolunga. aapki comfort sbse important ha mere liye. ma improve kruga promise 🐾💗
+        </div>
+        <button class="next-btn" onclick="goTo('page4')">Next →</button>
+    </div>
+
+    <!-- ================= PAGE 3 NO ================= -->
+    <div class="page" id="page3no">
+        <div class="msg">
+            meko bhot acha laga ki maine aapko hurt nahi kiya. ma aapki boundaries hamesha yaad rakhuga aur aapki hamesha respect kruga.<br><br>
+            (thoda sa sus bhi ha ki aap hamesha aisa hi bolte ho... lekin aap bol rhe ho isliye ma maan rha hu ki ma aapko pareshan nahi krta 😸)
+        </div>
+        <button class="next-btn" onclick="goTo('page4')">Next →</button>
+    </div>
+
+    <!-- ================= PAGE 4 : BEST BANNA CHATA HU ================= -->
+    <div class="page" id="page4">
+        <div class="msg">
+            ma aapke liye best bnna chata hu your highness... idk kyun but mera mann sach me yehi kehta ha ki aap best deserve krte ho. meko bhot bhot best bnna ha aapke liye.<br><br>
+            plz meko best bnao na... aap hi btao ma kya kya kru. ma promise krta hu ki jo bhi aap bologe ma wo kruga, bilkul waisa hi. aapki baat meri priority ha aur ma aapko kabhi disappoint nahi krna chata 🥺💖
+        </div>
+        <button class="next-btn" onclick="goTo('page5')">Next →</button>
+    </div>
+
+    <!-- ================= PAGE 5 : CRINGE + MOMMY ================= -->
+    <div class="page" id="page5">
+        <div class="warning">⚠️ ye page thora sa cringe ha... aap chaho toh skip kar skte ho</div>
+
+        <div class="msg">
+            meko bhot dar lg rha tha ye sab likhne me... but jab aapki tabiyat kharab thi aur aap mere se talky kr rhe the, those 2 days were my happiest days. maine bhot enjoy kiya.<br><br>
+            ma ye nahi keh rha ki abhi wale days nahi enjoy kr rha... aap hote ho toh ma sare days enjoy krta hu.<br><br>
+            aur ye btao na... aapko kaise pata chala ki ma blush kar rha tha jab aap mujhe mommy bol rhe the 😳🫣
+        </div>
+        <button class="next-btn" onclick="goTo('page6')">Next →</button>
+    </div>
+
+    <!-- ================= PAGE 6 : FINAL ================= -->
+    <div class="page" id="page6">
+        <h1 style="font-size:1.6rem;">Thank You Your Highness 🐈</h1>
+        <div class="subtitle">you mean the world to me</div>
+
+        <div class="msg" id="finalMsg">
+            <!-- JS will fill this -->
+        </div>
+
+        <div style="margin-top:10px; font-size:1.15rem; color:#f0abfc; font-weight: 500;">
+            Happy Choti Diwali ✨🪔<br>
+            enjoy krna bhotttttt cutie!
+        </div>
+
+        <footer>crafted with pure feelings only for you 🐾👑</footer>
+    </div>
+</div>
+
+<script>
+    function createParticles() {
+        const container = document.getElementById('particles-container');
+        const elements = ['🐾', '✨', '💖', '🐱'];
+        
+        for(let i = 0; i < 20; i++) {
+            let particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.innerText = elements[Math.floor(Math.random() * elements.length)];
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            particle.style.animationDelay = (Math.random() * 5) + 's';
+            container.appendChild(particle);
+        }
+    }
+    createParticles();
+
+    let noCount = 0;
+    let talkAnswer = null;
+
+    function goTo(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+    }
+
+    function answerGoodBoy(isYes) {
+        if (isYes) {
+            goTo('page3');
+            return;
+        }
+
+        noCount++;
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn1');
+
+        if (noCount >= 5) {
+            noBtn.style.display = 'none';
+            document.getElementById('noHint').innerText = "(dekh liya... ab Yes hi dabana padega 😼)";
+            yesBtn.style.transform = 'scale(1.3)';
+            yesBtn.style.padding = '16px 36px';
+            yesBtn.innerText = "Yes I am! 🥺";
+        } else {
+            const scale = 1 - (noCount * 0.15);
+            noBtn.style.transform = `scale(${scale})`;
+            noBtn.style.opacity = 1 - (noCount * 0.15);
+
+            yesBtn.style.transform = `scale(${1 + noCount * 0.1})`;
+        }
+    }
+
+    function answerTalk(isYes) {
+        talkAnswer = isYes;
+        if (isYes) {
+            goTo('page3yes');
+        } else {
+            goTo('page3no');
+        }
+    }
+
+    function buildFinalMessage() {
+        let msg = "";
+
+        msg += "ma good boi banuga aur aapki baat hamesha manuga. ";
+
+        if (talkAnswer === true) {
+            msg += "ma jaanta hu kabhi kabhi ma zyada bol jata hu... ab meko realise ho gaya ha. ma aage se control kruga aur aapki comfort ka dhyan rakhuga. ";
+        } else {
+            msg += "aapne kaha ma zyada nahi bolta... isse meko bhot relief mila. ma aapki boundaries hamesha respect kruga. ";
+        }
+
+        msg += "<br><br>aap mere liye sbse special ho your highness. thank you for being you 💖";
+
+        document.getElementById('finalMsg').innerHTML = msg;
+    }
+
+    const originalGoTo = goTo;
+    goTo = function(pageId) {
+        originalGoTo(pageId);
+        if (pageId === 'page6') {
+            buildFinalMessage();
+        }
+    };
+</script>
+
+</body>
+</html>
